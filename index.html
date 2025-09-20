@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEBULA STATE ✅</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;min-height: 100vh;display: flex;flex-direction: column;
+    }
+    header {
+      background: rgba(0,0,0,0.6);
+      padding: 1rem 2rem;display: flex;justify-content: space-between;align-items: center;
+      position: sticky;top:0;z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    header h1 {font-size: 1.5rem;letter-spacing: 2px;color: #00c6ff;display:flex;align-items:center;}
+    header h1 span {font-size:1.2rem;margin-left:6px;color:#1da1f2;}
+
+    /* Hamburger */
+    .hamburger {cursor:pointer;width:30px;height:22px;display:flex;flex-direction:column;justify-content:space-between;}
+    .hamburger span {display:block;height:4px;background:#fff;border-radius:4px;transition:0.4s;}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translateY(9px);}
+    .hamburger.active span:nth-child(2){opacity:0;}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translateY(-9px);}
+    nav {
+      display:none;flex-direction:column;background:rgba(0,0,0,0.9);
+      position:absolute;top:60px;right:20px;border-radius:8px;overflow:hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);z-index:101;
+    }
+    nav.active{display:flex;}
+    nav a {color:#fff;text-decoration:none;padding:0.8rem 1.5rem;transition:background 0.3s;white-space:nowrap;}
+    nav a:hover{background:rgba(255,255,255,0.1);}
+
+    main {flex:1;display:flex;justify-content:center;align-items:center;padding:2rem;}
+    .card {
+      background:rgba(255,255,255,0.08);padding:2rem;border-radius:1rem;
+      width:100%;max-width:900px;box-shadow:0 8px 32px rgba(0,0,0,0.5);backdrop-filter:blur(8px);
+      animation:fadeIn 1s ease-in-out;
+    }
+    .card h2{text-align:center;margin-bottom:1.5rem;color:#00c6ff;}
+    .form-group{margin-bottom:1rem;}
+    label{display:block;margin-bottom:0.5rem;}
+    input,textarea{width:100%;padding:0.8rem;border:none;border-radius:0.5rem;outline:none;font-size:1rem;background:rgba(255,255,255,0.1);color:#fff;}
+    textarea{resize:none;}
+    button{width:100%;padding:0.9rem;border:none;border-radius:0.5rem;
+      background:linear-gradient(45deg,#00c6ff,#0072ff);color:#fff;font-size:1rem;font-weight:bold;
+      cursor:pointer;transition:0.3s;}
+    button:hover{transform:scale(1.05);}
+    #status{margin-top:1rem;text-align:center;font-size:0.95rem;}
+    .error{color:#ff4d4d;}.success{color:#4dff88;}
+    footer{text-align:center;padding:1rem;background:rgba(0,0,0,0.6);font-size:0.9rem;margin-top:auto;}
+    footer strong{color:#00c6ff;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    section{display:none;}section.active{display:block;}
+    .home,.guide,.about,.forum,.contact{text-align:center;}
+    .home h2,.guide h2,.about h2,.forum h2,.contact h2{margin-bottom:1rem;color:#00c6ff;}
+    .home p,.guide p,.about p,.forum p,.contact p{margin-bottom:1.5rem;font-size:1.05rem;line-height:1.5;}
+    ul.rules{list-style:disc;text-align:left;margin:0 auto;max-width:750px;padding-left:1.5rem;}
+    ul.rules li{margin:0.5rem 0;}
+    code{background:rgba(0,0,0,0.5);padding:2px 5px;border-radius:4px;color:#1da1f2;}
+    pre{background:#111;padding:1rem;border-radius:0.5rem;text-align:left;overflow-x:auto;margin:1rem 0;}
+    h3{margin:1.5rem 0 0.8rem 0;color:#00c6ff;}
+    .rule-category{margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;}
+    .back-btn{background:rgba(255,255,255,0.1);margin-top:1rem;max-width:200px;margin-left:auto;margin-right:auto;}
+    .back-btn:hover{background:rgba(255,255,255,0.2);transform:scale(1.05);}
+    .admin-section {margin-top: 2rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 0.5rem;}
+    .admin-section h3 {color: #ff9900;}
+    table {width: 100%; border-collapse: collapse; margin-top: 1rem;}
+    th, td {padding: 0.75rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);}
+    th {background-color: rgba(0,0,0,0.3);}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NEBULA STATE <span>✔</span></h1>
+    <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+    <nav id="nav">
+      <a href="#" onclick="showSection('home')">🏠 Beranda</a>
+      <a href="#" onclick="showSection('whitelist')">📜 Whitelist</a>
+      <a href="#" onclick="showSection('guide')">📖 Panduan RP</a>
+      <a href="#" onclick="showSection('forum')">💬 Forum</a>
+      <a href="#" onclick="showSection('about')">👥 Tentang Kami</a>
+      <a href="#" onclick="showSection('contact')">📩 Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home" class="home active">
+      <div class="card">
+        <h2>✨ Selamat Datang di NEBULA STATE ✅</h2>
+        <p>Server roleplay realistis dengan komunitas aktif, event seru, dan pengalaman mendalam.  
+           Mari bergabung dan ciptakan cerita unikmu!</p>
+        <button onclick="showSection('whitelist')">📜 Isi Whitelist</button>
+        
+        <div class="rule-category">
+          <h3>📋 Aturan Umum Server</h3>
+          <ul class="rules">
+            <li>Usia minimal pemain adalah 15 tahun</li>
+            <li>Gunakan bahasa Indonesia yang baik dan benar</li>
+            <li>Dilarang menggunakan cheat/mod ilegal</li>
+            <li>Hormati semua pemain baik baru maupun lama</li>
+            <li>Dilarang melakukan bug abuse/exploit</li>
+            <li>Ikuti arahan dari Staff Server</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Whitelist -->
+    <section id="whitelist">
+      <div class="card">
+        <h2>📜 Formulir Whitelist</h2>
+        <form id="wlForm">
+          <div class="form-group">
+            <label for="rp_name">Nama RP (contoh: Lynn_Satoru)</label>
+            <input type="text" id="rp_name" name="rp_name" required placeholder="Nama_Akhir"/>
+          </div>
+          <div class="form-group">
+            <label for="password">Password Karakter</label>
+            <input type="password" id="password" name="password" required placeholder="Minimal 6 karakter"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Aktif</label>
+            <input type="email" id="email" name="email" required placeholder="email@contoh.com"/>
+          </div>
+          <button type="submit">Kirim Whitelist</button>
+        </form>
+        <p id="status"></p>
+        <button class="back-btn" onclick="showSection('home')">Kembali ke Beranda</button>
+
+        <!-- Admin Section (bisa disembunyikan di production) -->
+        <div class="admin-section">
+          <h3>🔧 Panel Admin (Debug)</h3>
+          <button onclick="loadWhitelistData()">Muat Data Whitelist</button>
+          <div id="whitelistData"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panduan & Rules -->
+    <section id="guide" class="guide">
+      <div class="card">
+        <h2>📖 Panduan Roleplay (RP)</h2>
+        <p>Seluruh pemain wajib memahami aturan RP berikut sebelum bermain:</p>
+
+        <div class="rule-category">
+          <h3>🆔 Identitas Karakter</h3>
+          <ul class="rules">
+            <li>Format nama: <code>Nama_Akhir</code> (contoh: <i>Lynn_Satoru</i>).</li>
+            <li>Dilarang nama aneh/berangka (contoh ❌: XxNaruto123_xX).</li>
+            <li>Dilarang menggunakan nama selebritas/karakter terkenal</li>
+            <li>Nama harus mencerminkan karakter realistis</li>
+          </ul>
+        </div>
+
+        <div class="rule-category">
+          <h3>💬 IC & OOC</h3>
+          <ul class="rules">
+            <li>IC (In Character) = percakapan karakter</li>
+            <li>OOC (Out Of Character) = percakapan pemain</li>
+            <li>/me = aksi (contoh: <code>/me mengambil dompet</code>)</li>
+            <li>/do = kondisi (contoh: <code>/do Dompet lusuh</code>)</li>
+            <li>/b = OOC singkat (contoh: <code>/b lag bentar</code>)</li>
+            <li>/ask = bertanya sesuatu (contoh: <code>/ask Apakah ini milikmu?</code>)</li>
+            <li>Dilarang melakukan OOC dalam channel IC</li>
+          </ul>
+        </div>
+
+        <div class="rule-category">
+          <h3>🚫 Larangan Utama</h3>
+          <ul class="rules">
+            <li><strong>Meta Gaming</strong>: Menggunakan informasi OOC untuk keuntungan IC</li>
+            <li><strong>Power Gaming</strong>: Memaksa aksi kepada pemain lain tanpa memberi kesempatan menolak</li>
+            <li><strong>RDM (Random Deathmatch)</strong>: Membunuh tanpa alasan RP yang jelas</li>
+            <li><strong>VDM (Vehicle Deathmatch)</strong>: Membunuh menggunakan kendaraan tanpa alasan RP</li>
+            <li><strong>Mixing</strong>: Mencampurkan informasi IC dan OOC</li>
+            <li><strong>Revenge Kill</strong>: Membunuh balik setelah respawn tanpa alasan RP baru</li>
+            <li><strong>Combat Logging</strong>: Keluar server saat sedang dalam situasi RP</li>
+          </ul>
+        </div>
+
+        <button class="back-btn" onclick="showSection('home')">Kembali ke Beranda</button>
+      </div>
+    </section>
+
+    <!-- Forum -->
+    <section id="forum" class="forum">
+      <div class="card">
+        <h2>💬 Forum</h2>
+        <p>Tempat diskusi antar pemain:</p>
+        
+        <div class="rule-category">
+          <h3>📢 Kategori Forum</h3>
+          <ul class="rules">
+            <li><b>IC Forum:</b> Cerita, bisnis, organisasi, berita, pengumuman resmi</li>
+            <li><b>OOC Forum:</b> Diskusi, saran, sharing, bantuan teknis, pengaduan</li>
+            <li><b>Recruitment:</b> Lowongan pekerjaan IC untuk berbagai fraksi</li>
+            <li><b>Marketplace:</b> Jual beli kendaraan, properti, dan barang lainnya</li>
+          </ul>
+        </div>
+        
+        <p>🚀 Forum interaktif segera hadir di <b>NEBULA STATE ✅</b>.</p>
+        
+        <button class="back-btn" onclick="showSection('home')">Kembali ke Beranda</button>
+      </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="about" class="about">
+      <div class="card">
+        <h2>👥 Tentang Kami</h2>
+        <p><b>NEBULA STATE ✅</b> adalah server roleplay immersive untuk GTA San Andreas Multiplayer.</p>
+        
+        <div class="rule-category">
+          <h3>🌌 Visi & Misi</h3>
+          <ul class="rules">
+            <li>Visi: Menjadi server RP terbaik dan paling realistis di Indonesia</li>
+            <li>Misi: Menyediakan dunia virtual yang realistis dengan event interaktif dan sistem whitelist ketat</li>
+          </ul>
+        </div>
+        
+        <div class="rule-category">
+          <h3>🚀 Fitur Unggulan</h3>
+          <ul class="rules">
+            <li>Sistem hukum yang realistis</li>
+            <li>Sistem kriminal yang detail</li>
+            <li>Sistem bisnis dan ekonomi yang dinamis</li>
+            <li>Sistem pemerintahan yang interaktif</li>
+            <li>Fraksi: Polisi, EMS, Mafia, Gang, Pemerintah</li>
+            <li>Event mingguan dan bulanan</li>
+            <li>Custom mapping dan mod yang realistis</li>
+          </ul>
+        </div>
+        
+        <button class="back-btn" onclick="showSection('home')">Kembali ke Beranda</button>
+      </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact" class="contact">
+      <div class="card">
+        <h2>📩 Kontak</h2>
+        <p>Hubungi kami untuk bantuan atau pertanyaan:</p>
+        
+        <div class="rule-category">
+          <h3>📧 Kontak Formal</h3>
+          <ul class="rules">
+            <li>Email: admin@nebulastate.com</li>
+            <li>Untuk pengaduan: report@nebulastate.com</li>
+            <li>Untuk kerjasama: partner@nebulastate.com</li>
+          </ul>
+        </div>
+        
+        <div class="rule-category">
+          <h3>⏰ Jam Operasional</h3>
+          <ul class="rules">
+            <li>Server: 24/7</li>
+            <li>Admin: Setiap hari 18.00 - 24.00 WIB</li>
+            <li>Response time: Maksimal 24 jam</li>
+          </ul>
+        </div>
+        
+        <button class="back-btn" onclick="showSection('home')">Kembali ke Beranda</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Dev by <strong>LynnSatoru</strong> | © NEBULA STATE ✅ 2023 - All rights reserved
+  </footer>
+
+  <script>
+    // Konfigurasi koneksi database (ganti dengan detail server Anda)
+    const DB_CONFIG = {
+      HOST: "localhost",
+      USER: "your_username",
+      PASSWORD: "your_password",
+      DATABASE: "your_database",
+      TABLE: "whitelist_data"
+    };
+
+    function toggleNav() {
+      document.querySelector(".hamburger").classList.toggle("active");
+      document.getElementById("nav").classList.toggle("active");
+    }
+    
+    function showSection(id) {
+      document.querySelectorAll("main section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      document.getElementById("nav").classList.remove("active");
+      document.querySelector(".hamburger").classList.remove("active");
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function isValidRPName(name) {
+      const regex = /^[A-Z][a-zA-Z]+_[A-Z][a-zA-Z]+$/;
+      return regex.test(name);
+    }
+    
+    function validateForm() {
+      const rpName = document.getElementById("rp_name").value.trim();
+      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value.trim();
+      
+      if (!isValidRPName(rpName)) {
+        return "❌ Nama RP tidak valid! Gunakan format: Nama_Akhir (contoh: Lynn_Satoru)";
+      }
+      
+      if (password.length < 6) {
+        return "❌ Password harus minimal 6 karakter";
+      }
+      
+      if (!email.includes('@') || !email.includes('.')) {
+        return "❌ Format email tidak valid";
+      }
+      
+      return null;
+    }
+    
+    // Fungsi untuk mengirim data ke server PHP
+    async function submitToServer(data) {
+      try {
+        // Ganti URL dengan endpoint PHP Anda
+        const response = await fetch('https://yourdomain.com/whitelist.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        console.error('Error:', error);
+        return { success: false, message: 'Terjadi kesalahan pada server' };
+      }
+    }
+    
+    // Simulasi koneksi database (ganti dengan koneksi database sesungguhnya)
+    async function saveToDatabase(data) {
+      // Dalam implementasi nyata, ini akan terhubung ke MySQL/phpMyAdmin
+      // Contoh koneksi menggunakan fetch ke API PHP
+      return await submitToServer(data);
+    }
+    
+    document.getElementById("wlForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const rpName = document.getElementById("rp_name").value.trim();
+      const password = document.getElementById("password").value;
+      const email = document.getElementById("email").value.trim();
+      const statusEl = document.getElementById("status");
+      
+      const validationError = validateForm();
+      if (validationError) {
+        statusEl.textContent = validationError;
+        statusEl.className = "error";
+        return;
+      }
+      
+      statusEl.textContent = "⏳ Mengirim whitelist ke server...";
+      statusEl.className = "";
+      
+      // Data yang akan dikirim ke database
+      const formData = {
+        rp_name: rpName,
+        password: password,
+        email: email,
+        register_date: new Date().toISOString(),
+        status: 'pending'
+      };
+      
+      try {
+        // Simpan ke database
+        const result = await saveToDatabase(formData);
+        
+        if (result.success) {
+          statusEl.textContent = "✅ Whitelist berhasil dikirim! Data telah tersimpan di database.";
+          statusEl.className = "success";
+          document.getElementById("wlForm").reset();
+        } else {
+          statusEl.textContent = `❌ ${result.message || 'Gagal menyimpan data'}`;
+          statusEl.className = "error";
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        statusEl.textContent = "❌ Gagal terhubung ke server. Silakan coba lagi nanti.";
+        statusEl.className = "error";
+      }
+    });
+    
+    // Fungsi untuk memuat data whitelist (untuk admin)
+    async function loadWhitelistData() {
+      try {
+        // Ganti dengan endpoint PHP yang sesuai
+        const response = await fetch('https://yourdomain.com/get_whitelist.php');
+        const data = await response.json();
+        
+        if (data.success) {
+          let html = '<h4>Data Whitelist Terkini</h4>';
+          html += '<table><tr><th>Nama RP</th><th>Email</th><th>Tanggal Daftar</th><th>Status</th></tr>';
+          
+          data.whitelists.forEach(item => {
+            html += `<tr><td>${item.rp_name}</td><td>${item.email}</td><td>${new Date(item.register_date).toLocaleDateString('id-ID')}</td><td>${item.status}</td></tr>`;
+          });
+          
+          html += '</table>';
+          document.getElementById('whitelistData').innerHTML = html;
+        } else {
+          document.getElementById('whitelistData').innerHTML = '<p>Gagal memuat data</p>';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('whitelistData').innerHTML = '<p>Error memuat data</p>';
+      }
+    }
+    
+    // Menutup menu navigasi ketika klik di luar
+    document.addEventListener('click', function(event) {
+      const nav = document.getElementById('nav');
+      const hamburger = document.querySelector('.hamburger');
+      const isClickInsideNav = nav.contains(event.target);
+      const isClickInsideHamburger = hamburger.contains(event.target);
+      
+      if (!isClickInsideNav && !isClickInsideHamburger && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
