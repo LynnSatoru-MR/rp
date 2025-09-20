@@ -5,10 +5,10 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Konfigurasi database
-$host = "localhost";
-$user = "your_username";
-$pass = "your_password";
-$dbname = "your_database";
+$host = "209.97.167.247";
+$user = "u13_wncCnUDG48";
+$pass = "=n!89PXDRC7wpZb+OS+^tRLd";
+$dbname = "s13_Indo";
 $table = "whitelist_data";
 
 // Membuat koneksi
@@ -45,4 +45,5 @@ if ($conn->query($sql) {
 }
 
 $conn->close();
+
 ?>
